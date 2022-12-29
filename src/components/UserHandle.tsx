@@ -1,22 +1,20 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 
-function UserHandle(props: any) {
-  let [userHandle, setUserHandle] = useState<string>("");
+function UserHandle({ updateName } : {updateName: any}) {
+  const form = useRef<any>();
 
-  const userHandleSubmit = (evnt: Event) => {
-    evnt.preventDefault();
-    props.updateName(userHandle);
-  };
+  const userHandleSubmit = (e : any) => {
+    e.preventDefault();
+    updateName(form.current["handle"].value)
 
+  }
+
+  console.log(form)
   return (
     <div>
-      <form className="Handle" onSubmit={userHandleSubmit as any}>
+      <form ref={form} className="Handle" onSubmit={(userHandleSubmit as any)}>
         <label htmlFor="handle">Handle</label>
-        <input
-          onChange={(evnt) => setUserHandle(evnt.target.value)}
-          type="text"
-          id="handle"
-        />
+        <input type="text" id="handle" name="handle" />
         <button type="submit">Submit</button>
       </form>
     </div>

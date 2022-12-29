@@ -1,23 +1,18 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
-import UserHandle from './components/UserHandle'
-import Result from './components/Result'
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import "./App.css";
+import UserHandle from "./components/UserHandle";
+import Result from "./components/Result";
 
 function App() {
-  
-  const [name, setName] = useState<string>("")
-
-  function updateName(handle:string){
-    setName(handle)
-  }
+  const [name, setName] = useState<string>("");
 
   return (
     <div className="App">
-      <UserHandle updateName = {updateName}/>
-      <Result userhandle ={name}/>
+      <UserHandle updateName={setName} />
+      {name !== "" && <Result userhandle={name} />}
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
